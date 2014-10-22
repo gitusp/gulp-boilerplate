@@ -3,18 +3,21 @@ gulp-boilerplate
 
 # Get Started
 1. Clone this repository.
+
 2. Remove these files.
-```bash
+  ```bash
 rm -rf .git README.md
-```
+  ```
+
 3. Install modules.
-```bash
+  ```bash
 npm install
-```
+  ```
+
 4. Launch your server.
-```bash
+  ```bash
 gulp
-```
+  ```
 
 Then you can access your app at http://localhost:3000/ :beer:
 
