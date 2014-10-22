@@ -3,11 +3,15 @@ gulp-boilerplate
 
 # Get Started
 1. Clone this repository.
-2. Install modules.
+2. Remove these files.
+```bash
+rm -rf .git README.md
+```
+3. Install modules.
 ```bash
 npm install
 ```
-3. Launch your server.
+4. Launch your server.
 ```bash
 gulp
 ```
