@@ -52,6 +52,11 @@ gulp.task 'static', ->
   gulp.src srcPaths(staticExtensions)
     .pipe gulp.dest APP_DIR
 
+# deploy bower components
+gulp.task 'bower', ->
+  gulp.src 'bower_components/**/*'
+    .pipe gulp.dest "#{APP_DIR}/scripts/libs"
+
 # watch and reload
 gulp.task 'watch', ->
   gulp.watch srcPaths(jadeExtensions), ['jade', browserSync.reload]
@@ -60,4 +65,4 @@ gulp.task 'watch', ->
   gulp.watch srcPaths(staticExtensions), ['static', browserSync.reload]
 
 # default set
-gulp.task 'default', ['jade', 'coffee', 'stylus', 'static', 'server', 'watch']
+gulp.task 'default', ['jade', 'coffee', 'stylus', 'static', 'bower', 'server', 'watch']
