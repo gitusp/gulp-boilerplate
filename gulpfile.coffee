@@ -6,39 +6,58 @@ coffee = require 'gulp-coffee'
 stylus = require 'gulp-stylus'
 nib = require 'nib'
 
+# define extensions
+jadeExtensions = ['jade']
+coffeeExtensions = ['coffee']
+stylusExtensions = ['styl', 'stylus']
+htmlExtensions = ['htm', 'html']
+imageExtensions = ['jpg', 'png', 'gif']
+cssExtensions = ['css']
+jsExtensions = ['js']
+staticExtensions = [].concat htmlExtensions, imageExtensions, cssExtensions, jsExtensions
+
+# define app directory
+APP_DIR = 'app'
+
+# return paths
+srcPaths = (extensions) ->
+  extensions = [extensions] unless extensions instanceof Array
+  for extension in extensions
+    "src/**/*.#{extension}"
+
 # launch server
 gulp.task 'server', ->
-  browserSync server: baseDir: 'app'
+  browserSync server: baseDir: APP_DIR
 
 # compile jade and deploy
 gulp.task 'jade', ->
-  gulp.src 'src/**/*.jade'
+  gulp.src srcPaths(jadeExtensions)
     .pipe jade()
-    .pipe gulp.dest 'app'
+    .pipe gulp.dest APP_DIR
 
 # compile coffee and deploy
 gulp.task 'coffee', ->
-  gulp.src 'src/**/*.coffee'
+  gulp.src srcPaths(coffeeExtensions)
     .pipe coffee(bare: true).on 'error', util.log
-    .pipe gulp.dest 'app'
+    .pipe gulp.dest APP_DIR
 
 # compile stylus and deploy
 gulp.task 'stylus', ->
-  gulp.src ['src/**/*.styl', 'src/**/*.stylus']
+  gulp.src srcPaths(stylusExtensions)
     .pipe stylus use: [nib()]
-    .pipe gulp.dest 'app'
+    .pipe gulp.dest APP_DIR
 
 # deploy images
-gulp.task 'image', ->
-  gulp.src ['src/**/*.jpg', 'src/**/*.png', 'src/**/*.gif']
-    .pipe gulp.dest 'app'
+gulp.task 'static', ->
+  gulp.src srcPaths(staticExtensions)
+    .pipe gulp.dest APP_DIR
 
 # watch and reload
 gulp.task 'watch', ->
-  gulp.watch ['src/**/*.jade'], ['jade', browserSync.reload]
-  gulp.watch ['src/**/*.coffee'], ['coffee', browserSync.reload]
-  gulp.watch ['src/**/*.styl', 'src/**/*.stylus'], ['stylus', browserSync.reload]
-  gulp.watch ['src/**/*.jpg', 'src/**/*.png', 'src/**/*.gif'], ['image', browserSync.reload]
+  gulp.watch srcPaths(jadeExtensions), ['jade', browserSync.reload]
+  gulp.watch srcPaths(coffeeExtensions), ['coffee', browserSync.reload]
+  gulp.watch srcPaths(stylusExtensions), ['stylus', browserSync.reload]
+  gulp.watch srcPaths(staticExtensions), ['static', browserSync.reload]
 
 # default set
-gulp.task 'default', ['jade', 'coffee', 'stylus', 'image', 'server', 'watch']
+gulp.task 'default', ['jade', 'coffee', 'stylus', 'static', 'server', 'watch']
