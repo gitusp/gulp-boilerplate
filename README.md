@@ -20,5 +20,5 @@ Then you can access your app at http://localhost:3000/ :beer:
 - Stylus `.styl` `.stylus`
 - JavaScript `.js`
 - CoffeeScript `.coffee`
-- HTML `.html`
+- HTML `.htm` `.html`
 - Image `.jpg` `.png` `.gif`
