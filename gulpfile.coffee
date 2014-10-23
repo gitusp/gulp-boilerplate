@@ -4,6 +4,7 @@ jade = require 'gulp-jade'
 util = require 'gulp-util'
 coffee = require 'gulp-coffee'
 stylus = require 'gulp-stylus'
+autoprefixer = require 'gulp-autoprefixer'
 nib = require 'nib'
 
 # define extensions
@@ -45,6 +46,7 @@ gulp.task 'coffee', ->
 gulp.task 'stylus', ->
   gulp.src srcPaths(stylusExtensions)
     .pipe stylus use: [nib()]
+    .pipe autoprefixer browsers: ['last 2 versions'], cascade: true
     .pipe gulp.dest APP_DIR
 
 # deploy images
