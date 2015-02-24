@@ -5,6 +5,7 @@ util = require 'gulp-util'
 coffee = require 'gulp-coffee'
 stylus = require 'gulp-stylus'
 autoprefixer = require 'gulp-autoprefixer'
+filter = require 'gulp-filter'
 nib = require 'nib'
 
 # define extensions
@@ -25,7 +26,7 @@ SOURCE_DIR = 'src'
 srcPaths = (extensions) ->
   extensions = [extensions] unless extensions instanceof Array
   for extension in extensions
-    "#{SOURCE_DIR}/**/[^_]*.#{extension}"
+    "#{SOURCE_DIR}/**/*.#{extension}"
 
 # launch server
 gulp.task 'server', ->
@@ -34,6 +35,7 @@ gulp.task 'server', ->
 # compile jade and deploy
 gulp.task 'jade', ->
   gulp.src srcPaths(jadeExtensions)
+    .pipe filter (file) -> not /\/_/.test(file.path) or not /^_/.test(file.relative)
     .pipe jade()
     .pipe gulp.dest APP_DIR
 
