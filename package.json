@@ -12,7 +12,6 @@
     "gulp-jade": "*",
     "gulp-stylus": "*",
     "gulp-autoprefixer": "*",
-    "gulp-filter": "*",
     "nib": "*"
   }
 }
