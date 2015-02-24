@@ -17,14 +17,15 @@ cssExtensions = ['css']
 jsExtensions = ['js']
 staticExtensions = [].concat htmlExtensions, imageExtensions, cssExtensions, jsExtensions
 
-# define app directory
+# define directories
 APP_DIR = 'app'
+SOURCE_DIR = 'src'
 
 # return paths
 srcPaths = (extensions) ->
   extensions = [extensions] unless extensions instanceof Array
   for extension in extensions
-    "src/**/*.#{extension}"
+    "#{SOURCE_DIR}/**/[^_]*.#{extension}"
 
 # launch server
 gulp.task 'server', ->
