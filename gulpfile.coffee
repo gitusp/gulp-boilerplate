@@ -59,7 +59,7 @@ gulp.task 'static', ->
 # deploy bower components
 gulp.task 'bower', ->
   gulp.src 'bower_components/**/*'
-    .pipe gulp.dest "#{APP_DIR}/scripts/libs"
+    .pipe gulp.dest "#{APP_DIR}/bower_components"
 
 # watch and reload
 gulp.task 'watch', ->
