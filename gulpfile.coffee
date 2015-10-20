@@ -13,9 +13,10 @@ coffeeExtensions = ['coffee']
 stylusExtensions = ['styl', 'stylus']
 htmlExtensions = ['htm', 'html']
 imageExtensions = ['jpg', 'png', 'gif']
+fileExtensions = ['pdf']
 cssExtensions = ['css']
 jsExtensions = ['js']
-staticExtensions = [].concat htmlExtensions, imageExtensions, cssExtensions, jsExtensions
+staticExtensions = [].concat htmlExtensions, imageExtensions, fileExtensions, cssExtensions, jsExtensions
 
 # define directories
 APP_DIR = 'app'

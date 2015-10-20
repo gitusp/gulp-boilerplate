@@ -29,3 +29,5 @@ Then you can access your app at http://localhost:3000/ :beer:
 - CoffeeScript `.coffee`
 - HTML `.htm` `.html`
 - Image `.jpg` `.png` `.gif`
+- File `.pdf`
+
